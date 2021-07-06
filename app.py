@@ -41,7 +41,8 @@ def storage():
     conn.commit()
     return render_template('empleados/index.html')
 
-#cambios
+#cambios  en la conexion a la base de datos
+
 
 if __name__=='__main__':
     app.run(debug=True)
