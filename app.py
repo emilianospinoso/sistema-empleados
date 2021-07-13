@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template , request, redirect , url_for
+from flask import render_template , request, redirect , url_for , flash
 from flaskext.mysql import MySQL
 from flask import send_from_directory
 
@@ -7,6 +7,7 @@ from datetime import datetime
 import os
 
 app= Flask(__name__)
+app.secret_key="Codoacodo"
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
@@ -95,6 +96,10 @@ def storage():
     _correo=request.form['txtCorreo']
     _foto=request.files['txtFoto']
 
+    if _nombre=='' or _correo=='' or _foto=='':
+        flash('Falta llenar algun dato')
+        return redirect(url_for('create'))
+        
     now = datetime.now()
     tiempo=now.strftime("%Y%H%M%S")
 
