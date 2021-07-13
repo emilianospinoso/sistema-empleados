@@ -1,3 +1,4 @@
+{% include 'header.html' %}
 Formulario para editar
 {% for empleado in empleados  %}
     <form method="post" action="/update" enctype="multipart/form-data">   
@@ -10,11 +11,17 @@ Formulario para editar
         Correo electronico:
         <input type="text" value="{{ empleado[2] }}" name="txtCorreo" id="txtCorreo">
         <br>
-    
-        {{ empleado[3] }}
+        
+        Foto:
+        <br>
+            <img class="img-thumbnail" width="100" src="{{ url_for('uploads', nombreFoto=empleado[3]) }}" alt="">
+        <br>
+
         <input type="file" name="txtFoto" id="txtFoto">
         <br>
         <br>    
         <input type="submit" value="Agregar">
     </form>
 {% endfor %}
+
+{% include 'footer.html' %}
